@@ -5,7 +5,7 @@ appId: com.tylormayfield.claimday
 - waitForAnimationToEnd
 
 # ── 01: Browse — settlement list ──────────────────────────────────────────────
-- wait: 10000
+- runScript: scripts/wait.js
 - assertVisible: "Browse"
 - takeScreenshot: "01_Browse"
 
