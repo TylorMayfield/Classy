@@ -5,7 +5,9 @@ appId: com.tylormayfield.claimday
 - waitForAnimationToEnd
 
 # ── 01: Browse — settlement list ──────────────────────────────────────────────
-- assertVisible: "Browse"
+- waitForVisible:
+    text: "Browse"
+    timeout: 60000
 - takeScreenshot: "01_Browse"
 
 # ── 02: Settlement detail modal ───────────────────────────────────────────────
