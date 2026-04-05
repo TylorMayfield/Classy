@@ -3,7 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import type { AppliedState } from '../types';
 
-const STORAGE_KEY = 'classy.applied';
+const STORAGE_KEY = 'claimday.applied';
 
 export function useAppliedStore() {
   const [appliedMap, setAppliedMap] = useState<AppliedState>({});

@@ -64,18 +64,9 @@ export function CartScreen() {
                   <Divider style={styles.divider} />
 
                   <View style={styles.meta}>
-                    <View style={styles.metaItem}>
-                      <Text variant="labelSmall" style={styles.metaLabel}>AWARD</Text>
-                      <Text variant="bodySmall">{item.potentialAward ?? 'Varies'}</Text>
-                    </View>
-                    <View style={styles.metaItem}>
-                      <Text variant="labelSmall" style={styles.metaLabel}>DEADLINE</Text>
-                      <Text variant="bodySmall">{item.deadlineLabel ?? 'Unknown'}</Text>
-                    </View>
-                    <View style={styles.metaItem}>
-                      <Text variant="labelSmall" style={styles.metaLabel}>PROOF</Text>
-                      <Text variant="bodySmall">{item.proofRequired ?? 'Unknown'}</Text>
-                    </View>
+                    <MetaRow label="Award" value={item.potentialAward ?? 'Varies'} />
+                    <MetaRow label="Deadline" value={item.deadlineLabel ?? 'Unknown'} />
+                    <MetaRow label="Proof" value={item.proofRequired ?? 'Unknown'} />
                   </View>
 
                   <View style={styles.actions}>
@@ -111,6 +102,15 @@ export function CartScreen() {
   );
 }
 
+function MetaRow({ label, value }: { label: string; value: string }) {
+  return (
+    <View style={styles.metaRow}>
+      <Text variant="labelSmall" style={styles.metaLabel}>{label.toUpperCase()}</Text>
+      <Text variant="bodySmall" style={styles.metaValue}>{value}</Text>
+    </View>
+  );
+}
+
 const styles = StyleSheet.create({
   safeArea: { flex: 1, backgroundColor: '#f6efe3' },
   content: { padding: 16, gap: 16, paddingBottom: 40 },
@@ -127,9 +127,10 @@ const styles = StyleSheet.create({
   addedAt: { color: '#7a6249', flexShrink: 0 },
   chips: { flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginTop: 10, marginBottom: 4 },
   divider: { marginVertical: 12 },
-  meta: { flexDirection: 'row', gap: 12, marginBottom: 12 },
-  metaItem: { flex: 1 },
-  metaLabel: { color: '#7a6249', marginBottom: 2 },
+  meta: { gap: 6, marginBottom: 12 },
+  metaRow: { flexDirection: 'row', justifyContent: 'space-between', gap: 12 },
+  metaLabel: { color: '#7a6249', flexShrink: 0, width: 64, paddingTop: 1 },
+  metaValue: { flex: 1, textAlign: 'right', color: '#1a1a1a' },
   actions: { flexDirection: 'row', alignItems: 'center', flexWrap: 'wrap', gap: 4 },
   applyButton: { marginRight: 4 },
 });

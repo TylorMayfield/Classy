@@ -1,0 +1,46 @@
+appId: com.tylormayfield.claimday
+---
+- launchApp:
+    clearState: true
+- waitForAnimationToEnd
+
+# ── 01: Browse — settlement list ──────────────────────────────────────────────
+- assertVisible: "Browse"
+- takeScreenshot: "01_Browse"
+
+# ── 02: Settlement detail modal ───────────────────────────────────────────────
+- tapOn:
+    index: 0
+    text: "settlement"
+- waitForAnimationToEnd
+- takeScreenshot: "02_Settlement_Detail"
+
+- tapOn:
+    id: "arrow-left"
+- waitForAnimationToEnd
+
+# ── 03: Profile setup ─────────────────────────────────────────────────────────
+- tapOn:
+    id: "account-circle-outline"
+- waitForAnimationToEnd
+- takeScreenshot: "03_My_Profile"
+
+- tapOn:
+    id: "close"
+- waitForAnimationToEnd
+
+# ── 04: Discover / Swipe deck ─────────────────────────────────────────────────
+- tapOn: "Discover"
+- waitForAnimationToEnd
+- takeScreenshot: "04_Discover"
+
+# ── 05: Cart ──────────────────────────────────────────────────────────────────
+- swipe:
+    start: 20%, 50%
+    end: 90%, 50%
+    duration: 300
+- waitForAnimationToEnd
+
+- tapOn: "Cart"
+- waitForAnimationToEnd
+- takeScreenshot: "05_Cart"

@@ -3,7 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import type { EligibilityInput } from '../utils/eligibility';
 
-const STORAGE_KEY = 'classy.profile';
+const STORAGE_KEY = 'claimday.profile';
 
 const defaultProfile: EligibilityInput = {
   states: [],

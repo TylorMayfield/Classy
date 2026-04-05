@@ -1,0 +1,45 @@
+name: Scrape Settlements
+
+on:
+  schedule:
+    # Run every day at 6am UTC
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+    # Allow manual trigger from the Actions tab
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run scraper
+        run: node scripts/scrape-settlements.mjs
+
+      - name: Check for changes
+        id: diff
+        run: |
+          git diff --quiet src/data/settlements.generated.json || echo "changed=true" >> $GITHUB_OUTPUT
+
+      - name: Commit and push
+        if: steps.diff.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add src/data/settlements.generated.json
+          git commit -m "chore: update settlements data [skip ci]"
+          git push

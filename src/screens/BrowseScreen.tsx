@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { FlatList, ScrollView, StyleSheet, View } from 'react-native';
+import { FlatList, RefreshControl, ScrollView, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ActivityIndicator, Chip, IconButton, Searchbar, Text } from 'react-native-paper';
 
@@ -189,6 +189,14 @@ export function BrowseScreen() {
           />
         )}
         contentContainerStyle={styles.listContent}
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={() => void refresh()}
+            tintColor="#1f4f46"
+            colors={['#1f4f46']}
+          />
+        }
         ListEmptyComponent={
           <View style={styles.empty}>
             <Text variant="bodyLarge" style={styles.emptyText}>No settlements match your filters.</Text>

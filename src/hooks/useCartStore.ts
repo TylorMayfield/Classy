@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const STORAGE_KEY = 'classy.cart';
+const STORAGE_KEY = 'claimday.cart';
 
 export type CartState = Record<string, { addedAt: string }>;
 

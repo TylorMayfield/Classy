@@ -4,8 +4,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { settlements as bundled } from '../data';
 import type { Settlement } from '../types';
 
-const STORAGE_KEY = 'classy.settlements';
-const LAST_REFRESHED_KEY = 'classy.settlements.refreshedAt';
+const STORAGE_KEY = 'claimday.settlements';
+const LAST_REFRESHED_KEY = 'claimday.settlements.refreshedAt';
 const DATA_URL =
   'https://raw.githubusercontent.com/TylorMayfield/Classy/main/src/data/settlements.generated.json';
 

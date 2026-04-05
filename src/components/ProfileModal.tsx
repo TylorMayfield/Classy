@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { FlatList, Linking, Modal, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { FlatList, Linking, Modal, ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { Button, Chip, Divider, IconButton, Searchbar, Text, TextInput } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -62,7 +62,7 @@ export function ProfileModal({ visible, onClose }: Props) {
           <>
             <View style={styles.header}>
               <IconButton icon="arrow-left" onPress={() => { setCurrentView('profile'); setStateQuery(''); }} />
-              <Text variant="headlineSmall" style={styles.headerTitle}>Select State</Text>
+              <Text variant="headlineSmall" style={styles.headerTitleCentered}>Select States</Text>
               <IconButton icon="close" onPress={handleClose} />
             </View>
 
@@ -111,7 +111,8 @@ export function ProfileModal({ visible, onClose }: Props) {
           // ── Profile view ───────────────────────────────────────
           <>
             <View style={styles.header}>
-              <Text variant="headlineSmall" style={styles.headerTitle}>My Profile</Text>
+              <View style={styles.headerSpacer} />
+              <Text variant="headlineSmall" style={styles.headerTitleCentered}>My Profile</Text>
               <IconButton icon="close" onPress={handleClose} />
             </View>
 
@@ -145,11 +146,15 @@ export function ProfileModal({ visible, onClose }: Props) {
                     <Text style={styles.stateChevron}>›</Text>
                   </TouchableOpacity>
                   {(profile.states?.length ?? 0) > 0 && (
-                    <View style={styles.selectedStatesRow}>
+                    <ScrollView
+                      horizontal
+                      showsHorizontalScrollIndicator={false}
+                      contentContainerStyle={styles.selectedStatesRow}
+                    >
                       {profile.states.map((s) => (
                         <Chip key={s} compact onClose={() => toggleState(s)} style={styles.stateChip}>{s}</Chip>
                       ))}
-                    </View>
+                    </ScrollView>
                   )}
 
                   <Divider style={styles.divider} />
@@ -209,14 +214,13 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingLeft: 8,
-    paddingRight: 8,
+    paddingHorizontal: 4,
     paddingVertical: 4,
     borderBottomWidth: 1,
     borderBottomColor: '#e0d5c5',
   },
-  headerTitle: { fontWeight: '700', color: '#1f4f46', flex: 1, marginLeft: 4 },
+  headerTitleCentered: { fontWeight: '700', color: '#1f4f46', flex: 1, textAlign: 'center' },
+  headerSpacer: { width: 48 },
   content: { padding: 20, gap: 12, paddingBottom: 40 },
   subtitle: { color: '#5f6773', lineHeight: 22 },
   sectionLabel: { textTransform: 'uppercase', color: '#7a6249', letterSpacing: 0.5, marginTop: 4 },
@@ -253,7 +257,7 @@ const styles = StyleSheet.create({
   checkbox: { width: 24, height: 24, borderRadius: 6, borderWidth: 2, borderColor: '#cdbda6', alignItems: 'center', justifyContent: 'center' },
   checkboxSelected: { backgroundColor: '#1f4f46', borderColor: '#1f4f46' },
   checkboxTick: { color: '#fff', fontSize: 14, fontWeight: '800' },
-  selectedStatesRow: { flexDirection: 'row', flexWrap: 'wrap', gap: 6, marginTop: 4 },
+  selectedStatesRow: { flexDirection: 'row', gap: 6, paddingVertical: 4 },
   stateChip: { backgroundColor: '#d4ede6' },
   clearAllRow: { padding: 14, backgroundColor: '#f5ddd3', alignItems: 'center' },
   clearAllText: { color: '#ad5c2b', fontWeight: '700' },
