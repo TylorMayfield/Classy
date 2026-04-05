@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { FlatList, Modal, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { FlatList, Linking, Modal, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { Button, Chip, Divider, IconButton, Searchbar, Text, TextInput } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -187,6 +187,13 @@ export function ProfileModal({ visible, onClose }: Props) {
                   <Button mode="contained" onPress={handleClose} style={styles.doneButton}>
                     Save & Close
                   </Button>
+
+                  <TouchableOpacity
+                    onPress={() => Linking.openURL('https://tylor.nz/legal').catch(() => undefined)}
+                    style={styles.legalLink}
+                  >
+                    <Text variant="bodySmall" style={styles.legalLinkText}>Legal &amp; Privacy Policy</Text>
+                  </TouchableOpacity>
                 </View>
               }
             />
@@ -256,4 +263,6 @@ const styles = StyleSheet.create({
   keywordRow: { flexDirection: 'row', alignItems: 'center', gap: 4 },
   keywordInput: { flex: 1, backgroundColor: '#fffaf2' },
   doneButton: { marginTop: 8 },
+  legalLink: { alignItems: 'center', paddingVertical: 12 },
+  legalLinkText: { color: '#1f4f46', textDecorationLine: 'underline' },
 });

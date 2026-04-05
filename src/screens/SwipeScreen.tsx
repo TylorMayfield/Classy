@@ -79,13 +79,7 @@ export function SwipeScreen() {
 
       <Text variant="bodySmall" style={styles.hint}>Swipe right to add to cart · left to skip</Text>
 
-      {lastAction && (
-        <Text variant="bodySmall" style={[styles.feedback, lastAction === 'right' ? styles.feedbackRight : styles.feedbackLeft]}>
-          {lastAction === 'right' ? 'Added to cart' : 'Skipped'}
-        </Text>
-      )}
-
-      <View style={styles.deck} collapsable={false}>
+<View style={styles.deck} collapsable={false}>
         {next ? <SwipeCard key={`next-${index}`} settlement={next} profile={profile} onSwipeLeft={() => {}} onSwipeRight={() => {}} isNext /> : null}
         <SwipeCard
           key={cardKey}
@@ -132,9 +126,7 @@ const styles = StyleSheet.create({
   eyebrow: { textTransform: 'uppercase', letterSpacing: 1, color: '#1f4f46' },
   remaining: { color: '#7a6249' },
   hint: { textAlign: 'center', color: '#7a6249', marginBottom: 8 },
-  feedback: { textAlign: 'center', fontWeight: '600', marginBottom: 4 },
-  feedbackRight: { color: '#1f4f46' },
-  feedbackLeft: { color: '#ad5c2b' },
+
   deck: {
     flex: 1,
     marginHorizontal: 16,

@@ -29,15 +29,19 @@ export function SwipeCard({ settlement, profile, onSwipeLeft, onSwipeRight, isNe
       },
       onPanResponderRelease: (_, gesture) => {
         if (gesture.dx > SWIPE_THRESHOLD) {
+          onSwipeRight();
           Animated.spring(position, {
             toValue: { x: OUT_X, y: gesture.dy },
             useNativeDriver: true,
-          }).start(onSwipeRight);
+            speed: 20,
+          }).start();
         } else if (gesture.dx < -SWIPE_THRESHOLD) {
+          onSwipeLeft();
           Animated.spring(position, {
             toValue: { x: -OUT_X, y: gesture.dy },
             useNativeDriver: true,
-          }).start(onSwipeLeft);
+            speed: 20,
+          }).start();
         } else {
           Animated.spring(position, {
             toValue: { x: 0, y: 0 },
