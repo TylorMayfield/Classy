@@ -1,0 +1,4 @@
+appId: com.tylormayfield.claimday
+---
+- assertVisible: "Browse"
+- assertVisible: "STATIC UI TEST READY"

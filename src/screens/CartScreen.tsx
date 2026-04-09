@@ -1,5 +1,4 @@
-import { Linking, ScrollView, StyleSheet, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { Linking, ScrollView, StyleSheet, View, SafeAreaView } from 'react-native';
 import { Button, Card, Chip, Divider, Text } from 'react-native-paper';
 
 import { useCartStore } from '../hooks/useCartStore';
@@ -22,7 +21,8 @@ export function CartScreen() {
   const appliedCount = cartItems.filter((s) => appliedMap[s.id]?.applied).length;
 
   return (
-    <SafeAreaView style={styles.safeArea} edges={['top']}>
+    <SafeAreaView style={styles.safeArea}>
+
       <ScrollView contentContainerStyle={styles.content}>
         <View style={styles.header}>
           <Text variant="headlineMedium" style={styles.headerTitle}>My Cart</Text>

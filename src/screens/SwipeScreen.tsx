@@ -1,6 +1,5 @@
 import { useMemo, useState } from 'react';
-import { StyleSheet, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { StyleSheet, View, SafeAreaView } from 'react-native';
 import { Button, IconButton, Text } from 'react-native-paper';
 
 import { SwipeCard } from '../components/SwipeCard';
@@ -52,7 +51,7 @@ export function SwipeScreen() {
 
   if (!current) {
     return (
-      <SafeAreaView style={styles.safeArea} edges={['top']}>
+      <SafeAreaView style={styles.safeArea}>
         <View style={styles.emptyContainer}>
           <Text variant="headlineMedium" style={styles.emptyTitle}>All caught up</Text>
           <Text variant="bodyLarge" style={styles.emptyBody}>
@@ -69,7 +68,8 @@ export function SwipeScreen() {
   }
 
   return (
-    <SafeAreaView style={styles.safeArea} edges={['top']}>
+    <SafeAreaView style={styles.safeArea}>
+
       <View style={styles.header}>
         <Text variant="labelLarge" style={styles.eyebrow}>Discover</Text>
         <Text variant="bodySmall" style={styles.remaining}>

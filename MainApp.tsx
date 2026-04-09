@@ -1,21 +1,17 @@
-import React, { useEffect } from 'react';
-import { View, Text } from 'react-native';
+import React from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { NavigationContainer } from '@react-navigation/native';
 import { PaperProvider } from 'react-native-paper';
+import { BrowseScreen } from './src/screens/BrowseScreen';
 
 export default function App() {
-  console.log('--- PAPER TEST EVALUATING ---');
-  
-  useEffect(() => {
-    console.log('--- PAPER TEST MOUNTED ---');
-  }, []);
-
+  console.log('--- MOCKED BROWSE WITH PAPER TEST EVALUATING ---');
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <PaperProvider>
-        <View style={{ flex: 1, backgroundColor: 'purple', justifyContent: 'center', alignItems: 'center' }}>
-          <Text style={{ color: 'white', fontSize: 32 }}>PAPER READY</Text>
-        </View>
+        <NavigationContainer>
+          <BrowseScreen />
+        </NavigationContainer>
       </PaperProvider>
     </GestureHandlerRootView>
   );
